@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pedido de Pizzas</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>¡Pide tu pizza favorita!</h1>
+    </header>
+
+  
+
+    <!-- Formulario -->
+    <form id="formulario" class="formPrincipal">
+        <!-- Imágenes -->
+    <img src="Imagenes/hawaiana.jpg" alt="Imagen Pizza" class="sectionImagenIzquierda">
+      <!-- Sección de datos del pedido -->
+      <div class="sectionOrden">
+        <h2>Datos del pedido</h2>
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" required minlength="3" maxlength="15" /><br /><br />
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha" required min="2025-01-01" max="2026-01-01" /><br /><br />
+      </div>
+
+      <!-- Sección de pizzas -->
+      <div class="sectionPizzas">
+        <h2>Elige tus pizzas</h2>
+        <label for="pizza1">Pizza 1:</label>
+        <select id="pizza1" name="pizza1">
+          <option value="Mexicana">Mexicana ($155)</option>
+          <option value="Pepperoni">Pepperoni ($173)</option>
+          <option value="Hawaiana">Hawaiana ($220)</option></select
+        ><br /><br />
+        <label for="pizza2">Pizza 2:</label>
+        <select id="pizza2" name="pizza2">
+          <option value="Mexicana">Mexicana ($155)</option>
+          <option value="Pepperoni">Pepperoni ($173)</option>
+          <option value="Hawaiana">Hawaiana ($220)</option></select
+        ><br /><br />
+        <label for="pizza3">Pizza 3:</label>
+        <select id="pizza3" name="pizza3">
+          <option value="Mexicana">Mexicana ($155)</option>
+          <option value="Pepperoni">Pepperoni ($173)</option>
+          <option value="Hawaiana">Hawaiana ($220)</option></select
+        ><br /><br />
+      </div>
+
+      <!-- Sección de complementos -->
+      <div class="sectionComplementos">
+        <h2>Añade un extra especial</h2>
+        <label class="checkbox-custom">
+          <input type="checkbox" name="QuesoExt" id="QuesoExt" />
+          <span class="checkmark"></span>
+          Queso Extra ($20) </label
+        ><br />
+        <label class="checkbox-custom">
+          <input type="checkbox" name="refresco" id="refresco" />
+          <span class="checkmark"></span>
+          Refresco ($20) </label
+        ><br />
+        <label class="checkbox-custom">
+          <input type="checkbox" name="OrQueso" id="OrQueso" />
+          <span class="checkmark"></span>
+          Orilla de Queso ($20) </label
+        ><br />
+        <label class="checkbox-custom">
+          <input type="checkbox" name="Papas" id="Papas" />
+          <span class="checkmark"></span>
+          Papas ($20) </label
+        ><br />
+      </div>
+
+      <!-- Sección de entrega -->
+      <div class="sectionEntrega">
+        <h2>¿Cómo quieres recibir tu pedido?</h2>
+        <label class="radio-custom">
+          <input type="radio" name="metodo" id="consumoLocal" />
+          <span class="radiomark"></span>
+          Recoger en tienda </label
+        ><br />
+        <label class="radio-custom">
+          <input type="radio" name="metodo" id="envioDomicilio" />
+          <span class="radiomark"></span>
+          Envío a domicilio </label
+        ><br />
+      </div>
+
+      <!-- Total y botón -->
+      <p id="total"></p>
+      <button onclick="guardarComida()" class="botonSiguiente" type="button">Continuar</button><br /><br />
+    </form>
+
+    <script src="script.js"></script>
+  </body>
+</html>

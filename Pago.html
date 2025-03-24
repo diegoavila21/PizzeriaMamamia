@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Pago</title>
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+
+    <form id="pago-form" class="formPrincipal">
+                <img src="Imagenes/pago.jpg" alt="PAgo" class="sectionImagenIzquierda">
+
+        <div class="sectionPaga">
+       
+        <h2>Pago</h2>
+
+        <!-- Mostrar el total -->
+        <p><strong>Total a pagar:</strong> $<span id="total-pagar"></span></p>
+
+        <label for="metodo-pago">Método de pago:</label>
+        <select id="metodo-pago" required>
+            <option value="">Selecciona un método</option>
+            <option value="Efectivo">Efectivo</option>
+            <option value="Tarjeta">Tarjeta</option>
+        </select><br /><br />
+
+        <!-- Apartado de efectivo -->
+        <div id="EfectivoDiv" style="display: none">
+            <h3>Cantidad efectivo</h3>
+            <label for="efectivo">Cantidad de efectivo a dar</label>
+            <input type="number" id="efectivo" />
+            <p id="mensaje-efectivo" style="color: red; display: none;">El monto en efectivo es menor al total.</p>
+        </div>
+
+        <!-- Apartado de tarjeta -->
+        <div id="datos-tarjeta" style="display: none">
+            <h3>Datos de la Tarjeta</h3>
+            <label for="numero-tarjeta">Número de Tarjeta:</label>
+            <input type="text" id="numero-tarjeta" maxlength="16" pattern="\d{16}" /><br /><br />
+            <label for="nombre-tarjeta">Nombre en la Tarjeta:</label>
+            <input type="text" id="nombre-tarjeta" /><br /><br />
+            <label for="fecha-expiracion">Fecha de Expiración:</label>
+            <input type="text" id="fecha-expiracion" placeholder="MM/AA" pattern="\d{2}/\d{2}" /><br /><br />
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" maxlength="3" pattern="\d{3}" /><br /><br />
+            <p id="mensaje-tarjeta" style="color: green; display: none;">Monto cobrado de su tarjeta.</p>
+        </div>
+ </div>
+        <button onclick="guardarPago()" type="button" class="botonSig">Generar Ticket</button><br /><br />
+        <button type="button" onclick="window.location.href = 'index.html'" class="botonReg">Regresar</button>
+    </form>
+
+    <script src="script.js"></script>
+</body>
+</html>

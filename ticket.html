@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Ticket de Pedido</title>
+        <link rel="stylesheet" href="styles.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+
+
+        <form class="formPrincipal">
+            <div class="ticket">
+                <h2>Ticket de Pedido</h2>
+                <p><strong>Pizza 1:</strong> <span id="ticket-pizza1"></span></p>
+                <p><strong>Pizza 2:</strong> <span id="ticket-pizza2"></span></p>
+                <p><strong>Pizza 3:</strong> <span id="ticket-pizza3"></span></p>
+                <p><strong>Complementos:</strong> <span id="ticket-complementos"></span></p>
+                <p><strong>Total:</strong> $<span id="ticket-total"></span></p>
+                <p><strong>Dirección:</strong> <span id="ticket-direccion"></span></p>
+                <p><strong>Método de Pago:</strong> <span id="ticket-metodo-pago"></span></p>
+                <p><strong>Cantidad de Efectivo:</strong> $<span id="ticket-efectivo"></span></p>
+                <p><strong>Datos de Tarjeta:</strong> <span id="ticket-datos-tarjeta"></span></p>
+                
+            </div>
+            
+            <img src="Imagenes/hawaiana.jpg" alt="Imagen Pizza" class="sectionImagenIzquierda">
+            <img src="Imagenes/PeperoniQueso.jpg" alt="Imagen Pizza" class="sectionImagenDerecha">
+            <button type="button" class="botonRegresar" onclick="window.location.href = 'index.html'">
+                Hacer otro pedido
+            </button>
+        </form>
+        <script>
+            // Recuperar datos del localStorage
+            const pizza1 = localStorage.getItem("pizza1");
+            const pizza2 = localStorage.getItem("pizza2");
+            const pizza3 = localStorage.getItem("pizza3");
+            const total = localStorage.getItem("total");
+            const complementos = JSON.parse(localStorage.getItem("complementos"));
+            const direccion = JSON.parse(localStorage.getItem("direccion"));
+            const metodoPago = localStorage.getItem("metodoPago");
+            const datosTarjeta = JSON.parse(localStorage.getItem("datosTarjeta"));
+            const efectivo = localStorage.getItem("efectivo");
+            // Mostrar los datos en el ticket
+            document.getElementById("ticket-pizza1").textContent = pizza1;
+            document.getElementById("ticket-pizza2").textContent = pizza2;
+            document.getElementById("ticket-pizza3").textContent = pizza3;
+            document.getElementById("ticket-total").textContent = total;
+
+            // Mostrar complementos
+            const complementosTexto = [];
+            if (complementos.QuesoExtra) complementosTexto.push("Queso Extra");
+            if (complementos.Refresco) complementosTexto.push("Refresco");
+            if (complementos.OrillaQueso) complementosTexto.push("Orilla de Queso");
+            if (complementos.Papas) complementosTexto.push("Papas");
+            document.getElementById("ticket-complementos").textContent = complementosTexto.join(", ");
+
+            // Mostrar dirección
+            if (direccion) {
+                document.getElementById("ticket-direccion").textContent =
+                    `${direccion.calle} ${direccion.numero}, ${direccion.colonia}, ${direccion.municipio}, ${direccion.estado}`;
+            }
+
+            // Mostrar método de pago y datos de tarjeta
+            document.getElementById("ticket-metodo-pago").textContent = metodoPago;
+            if (metodoPago === "Tarjeta" && datosTarjeta) {
+                document.getElementById("ticket-datos-tarjeta").textContent =
+                    `Número: ${datosTarjeta.numero}, Nombre: ${datosTarjeta.nombre}, Expiración: ${datosTarjeta.expiracion}, CVV: ${datosTarjeta.cvv}`;
+            } else if (metodoPago === "Efectivo" && efectivo) {
+                document.getElementById("ticket-datos-tarjeta").textContent = "No aplica";
+                document.getElementById("ticket-efectivo").textContent = efectivo; // Mostrar la cantidad de efectivo
+            } else {
+                document.getElementById("ticket-datos-tarjeta").textContent = "No aplica";
+                document.getElementById("ticket-efectivo").textContent = "0"; // Si no hay efectivo, mostrar 0
+            }
+        </script>
+    </body>
+</html>
