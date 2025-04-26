@@ -1,0 +1,345 @@
+/* Estilos generales */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #fff3e0; /* Fondo cálido */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Estilos para el header */
+header {
+    background-color: #e67e22; /* Naranja vibrante */
+    color: white; /* Texto blanco */
+    padding: 20px;
+    text-align: center;
+    position: fixed; /* Fija el header en la parte superior */
+    top: 0; /* Lo coloca hasta arriba */
+    left: 0; /* Lo coloca al inicio */
+    width: 100%; /* Ocupa todo el ancho */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+/* Estilos para el formulario principal */
+.formPrincipal {
+    background-color: white;
+    padding: 30px;
+    width: 90%;
+    max-width: 1200px; /* Formulario más grande */
+    border-radius: 15px;
+    border: 1px solid #f0c674; /* Borde dorado */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+    gap: 20px; /* Espacio entre las secciones */
+}
+.formulario-pedido {
+    display: flex;
+    margin: 10px;
+    flex-direction: column; /* Para que todo se apile de arriba hacia abajo */
+    grid-column: 2 / 3; /* Segunda columna */
+
+    gap: 20px; /* Espacio entre secciones */
+}
+
+/* Estilos para las secciones */
+.sectionDir,
+.sectionPizzas,
+.sectionComplementos,
+.sectionEntrega {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #f0c674; /* Borde dorado */
+}
+
+.sectionDir {
+    grid-column: 1 / -1; /* Ocupa ambas columnas */
+}
+
+.sectionPizzas {
+    grid-column: 1 / 2; /* Primera columna */
+}
+
+.sectionComplementos {
+    grid-column: 2 / 3; /* Segunda columna */
+}
+
+.sectionEntrega {
+    grid-column: 1 / -1; /* Ocupa ambas columnas */
+}
+
+/* Estilos para los botones */
+.botonesAccion {
+    grid-column: 1 / -1; /* Ocupa ambas columnas */
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Espacio entre botones */
+}
+
+.botonContinuar,
+.botonVolver {
+    flex: 1; /* Ambos botones ocupan el mismo espacio */
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #e67e22; /* Naranja vibrante */
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.botonContinuar:hover,
+.botonVolver:hover {
+    background-color: #d35400; /* Naranja oscuro */
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    display: none;
+}
+
+/* Estilos para checkboxes y radio buttons */
+.checkbox-custom,
+.radio-custom {
+    position: relative;
+    margin-bottom: 10px;
+    padding-left: 35px;
+    cursor: pointer;
+    font-size: 1rem;
+    user-select: none;
+}
+
+.checkbox-custom .checkmark::before,
+.radio-custom .radiomark::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f0c674; /* Borde dorado */
+    background-color: white;
+}
+
+.radio-custom .radiomark::before {
+    border-radius: 50%;
+}
+
+.checkbox-custom input[type="checkbox"]:checked + .checkmark::before,
+.radio-custom input[type="radio"]:checked + .radiomark::before {
+    background-color: #27ae60; /* Verde fresco */
+    border-color: #27ae60;
+}
+
+.checkbox-custom .checkmark::after,
+.radio-custom .radiomark::after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-custom input[type="checkbox"]:checked + .checkmark::after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    display: block;
+}
+
+.radio-custom input[type="radio"]:checked + .radiomark::after {
+    left: 6px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: white;
+    display: block;
+}
+
+/* Estilos para selects y inputs */
+select,
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #f0c674; /* Borde dorado */
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: white;
+    margin-bottom: 15px;
+}
+
+.comentario {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #f0c674; /* Borde dorado */
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: white;
+    margin-bottom: 15px;
+}
+
+select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23e67e22" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+select:focus,
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus {
+    border-color: #e67e22; /* Naranja vibrante */
+    outline: none;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+    .formPrincipal {
+        grid-template-columns: 1fr; /* Una columna en móviles */
+    }
+    .formulario-pedido {
+        grid-template-columns: 1fr; /* Una columna en móviles */
+        flex-direction: column; /* Mantener el apilamiento vertical */
+    }
+
+    .sectionPizzas,
+    .sectionComplementos {
+        grid-column: 1 / -1; /* Ocupa toda la columna */
+    }
+
+    .botonesAccion {
+        flex-direction: column; /* Botones apilados en móviles */
+    }
+}
+
+/* Estilos generales */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #fff3e0; /* Fondo cálido */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Contenedor principal */
+.contenedorPrincipal {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr; /* Tres columnas: imagen | contenido | imagen */
+    gap: 20px; /* Espacio entre columnas */
+    width: 100%;
+    max-width: 1200px; /* Ancho máximo del contenedor */
+}
+
+/* Estilos para el header */
+header {
+    grid-column: 1 / -1; /* Ocupa todas las columnas */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #e67e22; /* Naranja vibrante */
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+}
+
+/* Estilos para el formulario principal */
+.formPrincipal {
+    grid-column: 2 / 3; /* Ocupa la columna central */
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #f0c674; /* Borde dorado */
+}
+
+/* Estilos para las imágenes */
+.sectionImagenIzquierda,
+.sectionImagenDerecha {
+    width: 450px;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid #f0c674; /* Borde dorado */
+}
+
+.sectionImagenIzquierda {
+    grid-column: 1 / 2; /* Columna izquierda */
+}
+
+.sectionImagenDerecha {
+    grid-column: 3 / 4; /* Columna derecha */
+}
+
+/* Estilos para las secciones */
+.sectionDir,
+.sectionPizzas,
+.sectionComplementos,
+.sectionEntrega {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #f0c674; /* Borde dorado */
+    margin-bottom: 20px;
+}
+
+/* Estilos para los botones */
+.botonesAccion {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Espacio entre botones */
+}
+
+.botonContinuar,
+.botonVolver {
+    flex: 1; /* Ambos botones ocupan el mismo espacio */
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #e67e22; /* Naranja vibrante */
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.botonContinuar:hover,
+.botonVolver:hover {
+    background-color: #d35400; /* Naranja oscuro */
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+    .contenedorPrincipal {
+        grid-template-columns: 1fr; /* Una columna en móviles */
+    }
+
+    .sectionImagenIzquierda,
+    .sectionImagenDerecha {
+        display: none; /* Ocultar imágenes en móviles */
+    }
+
+    .formPrincipal {
+        grid-column: 1 / -1; /* Ocupa toda la columna */
+    }
+    .formulario-pedido {
+        grid-column: 1 / -1; /* Ocupa toda la columna */
+        flex-direction: column; /* Mantener el apilamiento vertical */
+    }
+}
