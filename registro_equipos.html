@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Equipo - Liga de Baloncesto</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Registrar Equipo de Baloncesto</h1>
+        <nav>
+            <ul>
+                <li><a href="registro_jugadores.html">Registrar Jugador</a></li>
+                <li><a href="registro_equipos.html">Registrar Equipo</a></li>
+                <li><a href="lista_equipos.html">Ver Equipos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="formulario">
+        <h2>Formulario de Registro de Equipo</h2>
+        <form id="form-equipo">
+            <label for="nombre-equipo">Nombre del Equipo:</label>
+            <input type="text" id="nombre-equipo" required>
+
+            <label for="entrenador-equipo">Nombre del Entrenador:</label>
+            <input type="text" id="entrenador-equipo" required>
+
+            <label for="categoria-equipo">Categoría:</label>
+            <select id="categoria-equipo" required>
+                <option value="">--Selecciona una categoría--</option>
+                <option value="Infantil">Infantil</option>
+                <option value="Juvenil">Juvenil</option>
+                <option value="Sub-21">Sub-21</option>
+                <option value="Libre">Libre</option>
+                <option value="Veteranos">Veteranos</option>
+            </select>
+
+            <label for="genero-equipo">Género:</label>
+            <select id="genero-equipo" required>
+                <option value="">--Selecciona el género--</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+            </select>
+
+            <button type="submit">Registrar Equipo</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>Liga de Baloncesto Tizayuca</p>
+    </footer>
+
+    <script>
+        document.getElementById("form-equipo").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const nombre = document.getElementById("nombre-equipo").value;
+            const entrenador = document.getElementById("entrenador-equipo").value;
+            const categoria = document.getElementById("categoria-equipo").value;
+            const genero = document.getElementById("genero-equipo").value;
+
+            const equipo = {
+                nombre,
+                entrenador,
+                categoria,
+                genero
+            };
+
+            let equipos = JSON.parse(localStorage.getItem("equipos")) || [];
+            equipos.push(equipo);
+            localStorage.setItem("equipos", JSON.stringify(equipos));
+
+            alert("¡Equipo registrado exitosamente!");
+            this.reset();
+        });
+    </script>
+</body>
+</html>

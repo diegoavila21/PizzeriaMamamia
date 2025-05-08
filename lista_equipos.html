@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Equipos - Liga de Baloncesto</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .equipo-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .equipo-item button {
+            margin-top: 5px;
+            background-color: crimson;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Equipos Registrados</h1>
+        <nav>
+            <ul>
+                <li><a href="registro_jugadores.html">Registrar Jugador</a></li>
+                <li><a href="registro_equipos.html">Registrar Equipo</a></li>
+                <li><a href="lista_equipos.html">Ver Equipos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="lista-equipos">
+        <h2>Listado de Equipos</h2>
+        <div id="lista-equipos"></div>
+    </div>
+
+    <footer>
+        <p>Liga de Baloncesto Tizayuca</p>
+    </footer>
+
+    <script>
+        function mostrarEquipos() {
+            const lista = document.getElementById("lista-equipos");
+            lista.innerHTML = ""; // Limpiar lista
+
+            const equipos = JSON.parse(localStorage.getItem("equipos")) || [];
+
+            if (equipos.length === 0) {
+                lista.innerHTML = "<p>No hay equipos registrados aún.</p>";
+                return;
+            }
+
+            equipos.forEach((equipo, index) => {
+                const item = document.createElement("div");
+                item.classList.add("equipo-item");
+                item.innerHTML = `
+                    <strong>${equipo.nombre}</strong><br>
+                    Entrenador: ${equipo.entrenador}<br>
+                    Categoría: ${equipo.categoria}<br>
+                    Género: ${equipo.genero || "No especificado"}<br>
+                    <button onclick="eliminarEquipo(${index})">Eliminar</button>
+                `;
+                lista.appendChild(item);
+            });
+        }
+
+        function eliminarEquipo(index) {
+            let equipos = JSON.parse(localStorage.getItem("equipos")) || [];
+            if (confirm("¿Estás seguro de eliminar este equipo?")) {
+                equipos.splice(index, 1);
+                localStorage.setItem("equipos", JSON.stringify(equipos));
+                mostrarEquipos();
+            }
+        }
+
+        // Mostrar al cargar
+        mostrarEquipos();
+    </script>
+</body>
+</html>

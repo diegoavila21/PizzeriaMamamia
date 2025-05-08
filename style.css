@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FFEB3B;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #003366;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: #FFEB3B;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 20px;
+    background-color: #003366;
+    border-radius: 5px;
+}
+
+nav ul li a:hover {
+    background-color: #FFEB3B;
+    color: #003366;
+    text-decoration: underline;
+}
+
+.img-liga {
+    display: block;
+    margin: 20px auto;
+    width: 40%;  /* 40% del ancho del contenedor */
+    max-width: 250px;  /* Tamaño máximo de 250px */
+    height: auto;
+}
+
+footer {
+    background-color: #003366;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
