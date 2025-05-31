@@ -1,45 +1,412 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <title>Menú de Inicio</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
-            text-align: center;
-            padding-top: 100px;
-        }
-        h1 {
-            color: #333;
-        }
-        .menu {
-            margin-top: 50px;
-        }
-        .menu a {
-            display: inline-block;
-            background-color: #4CAF50;
-            color: white;
-            padding: 20px 40px;
-            margin: 20px;
-            text-decoration: none;
-            font-size: 20px;
-            border-radius: 10px;
-            transition: background-color 0.3s;
-        }
-        .menu a:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liga de Baloncesto Tizayuca</title>
+    <link rel="stylesheet" href="stiles.css">
 </head>
+
 <body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo">🏀</div>
+                <div class="title-section">
+                    <h1>Liga de Baloncesto Tizayuca</h1>
+                    <p>Temporada 2025 - Hidalgo, México</p>
+                </div>
+            </div>
+            <nav class="nav">
+                <button onclick="showSection('posiciones')" class="active">Posiciones</button>
+                <button onclick="showSection('equipos')">Equipos</button>
+                <button onclick="showSection('jugadores')">Jugadores</button>
+                <button onclick="showSection('calendario')">Calendario</button>
+                <button onclick="showSection('registro')">Registro</button>
+                <button onclick="showSection('admin')">Admin Liga</button>
+                <button onclick="showSection('contacto')">Contacto</button>
+            </nav>
+        </div>
+    </header>
 
-    <h1>Bienvenido al Menú de Inicio</h1>
+    <div class="container">
+        <div id="posiciones" class="section active">
+            <div class="card">
+                <h2><span class="basketball-icon">🏀</span> Tabla de Posiciones</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Pos</th>
+                            <th>Equipo</th>
+                            <th>PJ</th>
+                            <th>PG</th>
+                            <th>PP</th>
+                            <th>PF</th>
+                            <th>PC</th>
+                            <th>Dif</th>
+                            <th>Pts</th>
+                        </tr>
+                    </thead>
+                    <tbody id="standingsBody"></tbody>
+                </table>
+                <p style="margin-top: 15px; font-size: 0.9rem; color: #666;">
+                    <strong>Leyenda:</strong> PJ=Partidos Jugados, PG=Partidos Ganados, PP=Partidos Perdidos, PF=Puntos a Favor, PC=Puntos en Contra, Dif=Diferencia, Pts=Puntos de Liga
+                </p>
+            </div>
+        </div>
 
-    <div class="menu">
-        <a href="index1.html">Pizzería</a>
-        <a href="index2.html">Liga de Baloncesto</a>
+        <div id="equipos" class="section">
+            <div class="card">
+                <h2><span class="basketball-icon">👥</span> Equipos de la Liga</h2>
+                <div class="team-grid" id="teamsGrid"></div>
+            </div>
+        </div>
+
+        <div id="jugadores" class="section">
+            <div class="card">
+                <h2><span class="basketball-icon">⭐</span> Jugadores Destacados</h2>
+                <div class="stats-grid" id="playersGrid"></div>
+            </div>
+        </div>
+
+        <div id="calendario" class="section">
+            <div class="card">
+                <h2><span class="basketball-icon">📅</span> Calendario de Partidos</h2>
+                <div id="gamesSchedule">
+                    <div class="games-grid" id="upcomingGames"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="registro" class="section">
+            <div class="card">
+                <h2><span class="basketball-icon">📝</span> Registro de Equipos</h2>
+                <div id="successMessage" class="success-message">
+                    ✅ ¡Equipo registrado exitosamente! El equipo ha sido agregado a la liga.
+                </div>
+                <div class="form-container">
+                    <h3 style="color: #1e3c72; margin-bottom: 20px;">Registrar Nuevo Equipo</h3>
+                    <form id="teamRegistrationForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="teamName">Nombre del Equipo *</label>
+                                <input type="text" id="teamName" name="teamName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="teamLogo">Emoji del Logo</label>
+                                <select id="teamLogo" name="teamLogo">
+                                    <option value="🦅">🦅 Águila</option>
+                                    <option value="🦁">🦁 León</option>
+                                    <option value="🐆">🐆 Jaguar</option>
+                                    <option value="⚡">⚡ Rayo</option>
+                                    <option value="🔥">🔥 Fuego</option>
+                                    <option value="💪">💪 Fuerza</option>
+                                    <option value="🏆">🏆 Campeón</option>
+                                    <option value="⭐">⭐ Estrella</option>
+                                    <option value="👑">👑 Rey</option>
+                                    <option value="🚀">🚀 Cohete</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="coachName">Nombre del Director Técnico *</label>
+                                <input type="text" id="coachName" name="coachName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="teamContact">Teléfono de Contacto *</label>
+                                <input type="tel" id="teamContact" name="teamContact" placeholder="+52 771 XXX XXXX" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="teamEmail">Correo Electrónico</label>
+                                <input type="email" id="teamEmail" name="teamEmail" placeholder="equipo@ejemplo.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="foundedYear">Año de Fundación</label>
+                                <input type="number" id="foundedYear" name="foundedYear" min="1900" max="2025" placeholder="2020">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="teamDescription">Descripción del Equipo</label>
+                            <textarea id="teamDescription" name="teamDescription" rows="3" placeholder="Breve descripción del equipo, historia, objetivos..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="teamColors">Colores del Equipo</label>
+                            <input type="text" id="teamColors" name="teamColors" placeholder="Azul y Blanco">
+                        </div>
+                        <div style="text-align: center; margin-top: 30px;">
+                            <button type="submit" class="btn">🏀 Registrar Equipo</button>
+                            <button type="button" class="btn btn-secondary" onclick="clearForm()">🔄 Limpiar Formulario</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="form-container" style="margin-top: 30px;">
+                    <h3 style="color: #1e3c72; margin-bottom: 20px;">Equipos Registrados</h3>
+                    <div class="team-grid" id="registeredTeamsGrid"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="admin" class="section">
+            <div class="card">
+                <h2><span class="basketball-icon">⚙️</span> Administración de Liga</h2>
+                <div id="adminAlert" class="alert alert-success" style="display: none;"></div>
+                <div class="stats-cards">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalTeams">0</div>
+                        <div class="stat-label">Equipos Registrados</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalPlayers">0</div>
+                        <div class="stat-label">Jugadores Activos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalGames">0</div>
+                        <div class="stat-label">Partidos Programados</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">2025</div>
+                        <div class="stat-label">Temporada Actual</div>
+                    </div>
+                </div>
+
+                <div class="admin-tabs">
+                    <button class="admin-tab active" onclick="showAdminSection('teams')">🏀 Gestión de Equipos</button>
+                    <button class="admin-tab" onclick="showAdminSection('standings')">📊 Tabla de Posiciones</button>
+                    <button class="admin-tab" onclick="showAdminSection('players')">👥 Gestión de Jugadores</button>
+                    <button class="admin-tab" onclick="showAdminSection('games')">🎮 Partidos</button>
+                </div>
+
+                <div id="admin-teams" class="admin-section active">
+                    <div class="quick-actions">
+                        <div class="quick-action-card" onclick="openModal('addTeamModal')">
+                            <h3>➕ Agregar Equipo</h3>
+                            <p>Registrar un nuevo equipo en la liga</p>
+                        </div>
+                        <div class="quick-action-card" onclick="exportTeamsData()">
+                            <h3>📥 Exportar Datos</h3>
+                            <p>Descargar información de equipos</p>
+                        </div>
+                        <div class="quick-action-card" onclick="resetAllTeams()">
+                            <h3>🔄 Reiniciar Liga</h3>
+                            <p>Restablecer todos los datos</p>
+                        </div>
+                    </div>
+                    <h3>Equipos Registrados</h3>
+                    <div class="team-grid" id="adminTeamsGrid"></div>
+                </div>
+
+                <div id="admin-standings" class="admin-section">
+                    <div style="margin-bottom: 20px;">
+                        <button class="btn" onclick="saveStandings()">💾 Guardar Cambios</button>
+                        <button class="btn btn-secondary" onclick="resetStandings()">🔄 Restablecer</button>
+                    </div>
+                    <table class="editable-table" id="adminStandingsTable">
+                        <thead>
+                            <tr>
+                                <th>Equipo</th>
+                                <th>PJ</th>
+                                <th>PG</th>
+                                <th>PP</th>
+                                <th>PF</th>
+                                <th>PC</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminStandingsBody"></tbody>
+                    </table>
+                </div>
+
+                <div id="admin-players" class="admin-section">
+                    <div class="quick-actions">
+                        <div class="quick-action-card" onclick="openModal('addPlayerModal')">
+                            <h3>➕ Agregar Jugador</h3>
+                            <p>Registrar nuevo jugador destacado</p>
+                        </div>
+                        <div class="quick-action-card" onclick="generatePlayerStats()">
+                            <h3>📊 Generar Estadísticas</h3>
+                            <p>Crear estadísticas aleatorias</p>
+                        </div>
+                    </div>
+                    <div class="stats-grid" id="adminPlayersGrid"></div>
+                </div>
+
+                <div id="admin-games" class="admin-section">
+                    <div class="quick-actions">
+                        <div class="quick-action-card" onclick="openModal('addGameModal')">
+                            <h3>➕ Programar Partido</h3>
+                            <p>Agregar nuevo partido a la temporada</p>
+                        </div>
+                        <div class="quick-action-card" onclick="generateSchedule()">
+                            <h3>📅 Generar Calendario</h3>
+                            <p>Crear calendario completo</p>
+                        </div>
+                    </div>
+                    <div id="gamesSchedule">
+                        <h3>Próximos Partidos</h3>
+                        <div class="games-grid" id="upcomingGames"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="contacto" class="section">
+            <div class="card">
+                <h2><span class="basketball-icon">📞</span> Información de Contacto</h2>
+                <div class="contact-info">
+                    <h3>Liga de Baloncesto Tizayuca</h3>
+                    <p>La liga más emocionante del estado de Hidalgo</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <h4>📱 Contacto Principal</h4>
+                            <p>+52 1 56 5896 2190</p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>📍 Ubicación</h4>
+                            <p>Tizayuca, Hidalgo, México</p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>⏰ Horarios de Juego</h4>
+                            <p>Sábados y Domingos<br>10:00 AM - 6:00 PM</p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>🏟️ Sede Principal</h4>
+                            <p>Gimnasio Municipal<br>Tizayuca</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="addTeamModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>➕ Agregar Nuevo Equipo</h3>
+                    <button class="close-modal" onclick="closeModal('addTeamModal')">×</button>
+                </div>
+                <form id="addTeamForm">
+                    <div class="form-group">
+                        <label for="modalTeamName">Nombre del Equipo *</label>
+                        <input type="text" id="modalTeamName" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="modalTeamLogo">Logo</label>
+                            <select id="modalTeamLogo">
+                                <option value="🦅">🦅 Águila</option>
+                                <option value="🦁">🦁 León</option>
+                                <option value="🐆">🐆 Jaguar</option>
+                                <option value="⚡">⚡ Rayo</option>
+                                <option value="🔥">🔥 Fuego</option>
+                                <option value="💪">💪 Fuerza</option>
+                                <option value="🏆">🏆 Campeón</option>
+                                <option value="⭐">⭐ Estrella</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="modalCoachName">Director Técnico *</label>
+                            <input type="text" id="modalCoachName" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalTeamContact">Teléfono *</label>
+                        <input type="tel" id="modalTeamContact" required>
+                    </div>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button type="submit" class="btn">Agregar Equipo</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('addTeamModal')">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="addPlayerModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>➕ Agregar Jugador Destacado</h3>
+                    <button class="close-modal" onclick="closeModal('addPlayerModal')">×</button>
+                </div>
+                <form id="addPlayerForm">
+                    <div class="form-group">
+                        <label for="modalPlayerName">Nombre del Jugador *</label>
+                        <input type="text" id="modalPlayerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalPlayerTeam">Equipo *</label>
+                        <select id="modalPlayerTeam" required>
+                            <option value="">Seleccionar equipo...</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="modalPlayerPoints">Puntos por juego</label>
+                            <input type="number" id="modalPlayerPoints" step="0.1" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="modalPlayerRebounds">Rebotes por juego</label>
+                            <input type="number" id="modalPlayerRebounds" step="0.1" min="0">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalPlayerAssists">Asistencias por juego</label>
+                        <input type="number" id="modalPlayerAssists" step="0.1" min="0">
+                    </div>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button type="submit" class="btn">Agregar Jugador</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('addPlayerModal')">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="addGameModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>➕ Programar Partido</h3>
+                    <button class="close-modal" onclick="closeModal('addGameModal')">×</button>
+                </div>
+                <form id="addGameForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="modalTeam1">Equipo Local</label>
+                            <select id="modalTeam1" required>
+                                <option value="">Seleccionar...</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="modalTeam2">Equipo Visitante</label>
+                            <select id="modalTeam2" required>
+                                <option value="">Seleccionar...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="modalGameDate">Fecha</label>
+                            <input type="date" id="modalGameDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="modalGameTime">Hora</label>
+                            <input type="time" id="modalGameTime" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalGameVenue">Sede</label>
+                        <input type="text" id="modalGameVenue" placeholder="Gimnasio Municipal">
+                    </div>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button type="submit" class="btn">Programar Partido</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('addGameModal')">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
+    <script src="scrip.js"></script>
 </body>
+
 </html>
