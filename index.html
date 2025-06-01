@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header {
+            margin-bottom: 60px;
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        .header h1 {
+            font-size: 3.5rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        
+        .project-card:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .project-icon {
+            font-size: 4rem;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .pizzeria-card .project-icon {
+            animation-delay: 0s;
+        }
+        
+        .basketball-card .project-icon {
+            animation-delay: 1.5s;
+        }
+        
+        .project-card:hover .project-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+        
+        .project-title {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        .project-description {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        .project-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .basketball-card .project-button {
+            background: linear-gradient(45deg, #fd79a8, #e84393);
+        }
+        
+        .project-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .project-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .project-button:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .floating-element {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.1);
+            font-size: 2rem;
+            animation: floatAround 20s linear infinite;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        @keyframes floatAround {
+            0% {
+                transform: translateX(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.1;
+            }
+            90% {
+                opacity: 0.1;
+            }
+            100% {
+                transform: translateX(calc(100vw + 100px)) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .project-card {
+                padding: 30px;
+                min-height: 300px;
+            }
+            .project-icon {
+                font-size: 3rem;
+            }
+            .project-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="floating-elements" id="floatingElements"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Proyecto</h1>
+        </div>
+
+        <div class="projects-grid">
+            <div class="project-card pizzeria-card" onclick="goToPizzeria()">
+                <div class="project-icon">🍕</div>
+                <h2 class="project-title">Pizzería Italiana</h2>
+                <p class="project-description">
+                    Auténticos sabores italianos con ingredientes frescos y recetas tradicionales. Una experiencia culinaria que te transportará directamente a Italia.
+                </p>
+                <button class="project-button">Ver Pizzería</button>
+            </div>
+
+            <div class="project-card basketball-card" onclick="goToBasketball()">
+                <div class="project-icon">🏀</div>
+                <h2 class="project-title">Liga de Baloncesto</h2>
+                <p class="project-description">
+                    La liga más emocionante de baloncesto local. Sigue los partidos, estadísticas y toda la acción de nuestros equipos favoritos.
+                </p>
+                <button class="project-button">Ver Liga</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function createFloatingElements() {
+            const container = document.getElementById('floatingElements');
+            const elements = ['🍕', '🏀', '⭐', '🔥'];
+
+            setInterval(() => {
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+                element.textContent = elements[Math.floor(Math.random() * elements.length)];
+                element.style.top = Math.random() * 100 + '%';
+                element.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                element.style.fontSize = (Math.random() * 1 + 1.5) + 'rem';
+
+                container.appendChild(element);
+
+                setTimeout(() => {
+                    if (element.parentNode) {
+                        element.parentNode.removeChild(element);
+                    }
+                }, 25000);
+            }, 3000);
+        }
+
+        function goToPizzeria() {
+            alert('Aquí iría la navegación a tu proyecto de pizzería.\nCambia esta función por: window.location.href = "url-de-tu-pizzeria"');
+        }
+
+        function goToBasketball() {
+            alert('Aquí iría la navegación a tu liga de baloncesto.\nCambia esta función por: window.location.href = "url-de-tu-liga"');
+        }
+
+        window.addEventListener('load', createFloatingElements);
+
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.project-card');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+
+            cards.forEach((card, index) => {
+                const xOffset = (x - 0.5) * 20 * (index % 2 === 0 ? 1 : -1);
+                const yOffset = (y - 0.5) * 20 * (index % 2 === 0 ? 1 : -1);
+                card.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+            });
+        });
+    </script>
+</body>
+
+</html>
