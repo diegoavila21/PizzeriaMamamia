@@ -85,6 +85,71 @@
                 <div id="successMessage" class="success-message">
                     ✅ ¡Equipo registrado exitosamente! El equipo ha sido agregado a la liga.
                 </div>
+                <div class="form-container">
+                    <h3 style="color: #1e3c72; margin-bottom: 20px;">Registrar Nuevo Equipo</h3>
+                    <form id="teamRegistrationForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="teamName">Nombre del Equipo *</label>
+                                <input type="text" id="teamName" name="teamName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="teamLogo">Emoji del Logo</label>
+                                <select id="teamLogo" name="teamLogo">
+                                    <option value="🦅">🦅 Águila</option>
+                                    <option value="🦁">🦁 León</option>
+                                    <option value="🐆">🐆 Jaguar</option>
+                                    <option value="⚡">⚡ Rayo</option>
+                                    <option value="🔥">🔥 Fuego</option>
+                                    <option value="💪">💪 Fuerza</option>
+                                    <option value="🏆">🏆 Campeón</option>
+                                    <option value="⭐">⭐ Estrella</option>
+                                    <option value="👑">👑 Rey</option>
+                                    <option value="🚀">🚀 Cohete</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="coachName">Nombre del Director Técnico *</label>
+                                <input type="text" id="coachName" name="coachName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="teamContact">Teléfono de Contacto *</label>
+                                <input type="tel" id="teamContact" name="teamContact" placeholder="+52 771 XXX XXXX" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="teamEmail">Correo Electrónico</label>
+                                <input type="email" id="teamEmail" name="teamEmail" placeholder="equipo@ejemplo.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="foundedYear">Año de Fundación</label>
+                                <input type="number" id="foundedYear" name="foundedYear" min="1900" max="2025" placeholder="2020">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="teamDescription">Descripción del Equipo</label>
+                            <textarea id="teamDescription" name="teamDescription" rows="3" placeholder="Breve descripción del equipo, historia, objetivos..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="teamColors">Colores del Equipo</label>
+                            <input type="text" id="teamColors" name="teamColors" placeholder="Azul y Blanco">
+                        </div>
+                        <div style="text-align: center; margin-top: 30px;">
+                            <button type="submit" class="btn">🏀 Registrar Equipo</button>
+                            <button type="button" class="btn btn-secondary" onclick="clearForm()">🔄 Limpiar Formulario</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="form-container" style="margin-top: 30px;">
+                    <h3 style="color: #1e3c72; margin-bottom: 20px;">Equipos Registrados</h3>
+                    <div class="team-grid" id="registeredTeamsGrid"></div>
+                </div>
+            </div>
+        </div>
+
         <div id="admin" class="section">
             <div class="card">
                 <h2><span class="basketball-icon">⚙️</span> Administración de Liga</h2>
