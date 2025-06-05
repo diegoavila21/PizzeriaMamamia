@@ -279,56 +279,53 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div -- <div id="comentarios" class="section">
+        <div class="card">
+            <main>
+                <section class="hero">
+                    <p>Me gustaría saber qué te parece esta página.</p>
+                    <p>Si hay algo que crees que se puede mejorar, ¡tus ideas y sugerencias serán más que bien recibidas!</p>
+                    <p>Gracias por tomarte un rato para ayudarme con esto.</p>
+                </section>
 
-        <div id="comentarios" class="section">
-            <div class="card">
-                <h2><span class="basketball-icon">💬</span> Comentarios</h2>
-                <div class="form-container">
-                    <h3 style="color: #1e3c72; margin-bottom: 20px;">Deja tu Comentario</h3>
-                    <form id="commentForm">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="commentName">Nombre *</label>
-                                <input type="text" id="commentName" name="commentName" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="commentEmail">Correo Electrónico</label>
-                                <input type="email" id="commentEmail" name="commentEmail" placeholder="tu@ejemplo.com">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="commentText">Comentario *</label>
-                            <textarea id="commentText" name="commentText" rows="4" required placeholder="Escribe tu comentario aquí..."></textarea>
-                        </div>
-                        <div style="text-align: center; margin-top: 20px;">
-                            <button type="submit" class="btn">💬 Enviar Comentario</button>
-                            <button type="button" class="btn btn-secondary" onclick="clearCommentForm()">🔄 Limpiar</button>
-                        </div>
+                <section id="formulario-coment" class="info-section">
+                    <h2>Envía tus comentarios</h2>
+                    <form action="https://formsubmit.co/diegoma240508@gmail.com" method="POST">
+                        <label for="name">Nombre:</label>
+                        <input type="text" id="name" name="name" required/>
+
+                        <label for="email">Correo Electrónico:</label>
+                        <input type="email" id="email" name="email" required/>
+
+                        <label for="message">Mensaje:</label>
+                        <textarea id="message" name="message" rows="4" required></textarea>
+
+                        <input type="hidden" name="_subject" value="Nuevo comentario" />
+                        <input type="hidden" name="_next" value="https://diegoavila21.github.io/PizzeriaMamamia/liga.html" />
+                        <input type="hidden" name="_captcha" value="false" />
+
+                        <button type="submit">Enviar comentario</button>
                     </form>
-                </div>
-                <div class="form-container" style="margin-top: 30px;">
-                    <h3 style="color: #1e3c72; margin-bottom: 20px;">Comentarios Recientes</h3>
-                    <div id="commentsList" class="comments-grid"></div>
-                </div>
-            </div>
+                </section>
+            </main>
         </div>
+    </div>
 
-        <div id="addTeamModal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3>➕ Agregar Nuevo Equipo</h3>
-                    <button class="close-modal" onclick="closeModal('addTeamModal')">×</button>
+    <div id="addTeamModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>➕ Agregar Nuevo Equipo</h3>
+                <button class="close-modal" onclick="closeModal('addTeamModal')">×</button>
+            </div>
+            <form id="addTeamForm">
+                <div class="form-group">
+                    <label for="modalTeamName">Nombre del Equipo *</label>
+                    <input type="text" id="modalTeamName" required>
                 </div>
-                <form id="addTeamForm">
+                <div class="form-row">
                     <div class="form-group">
-                        <label for="modalTeamName">Nombre del Equipo *</label>
-                        <input type="text" id="modalTeamName" required>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="modalTeamLogo">Logo</label>
-                            <select id="modalTeamLogo">
+                        <label for="modalTeamLogo">Logo</label>
+                        <select id="modalTeamLogo">
                                 <option value="🦅">🦅 Águila</option>
                                 <option value="🦁">🦁 León</option>
                                 <option value="🐆">🐆 Jaguar</option>
@@ -336,110 +333,108 @@
                                 <option value="🔥">🔥 Fuego</option>
                                 <option value="💪">💪 Fuerza</option>
                                 <option value="🏆">🏆 Campeón</option>
-                                < Exposition value="⭐">⭐ Estrella</option>
+                                <option value="⭐">⭐ Estrella</option>
                             </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="modalCoachName">Director Técnico *</label>
-                            <input type="text" id="modalCoachName" required>
-                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="modalTeamContact">Teléfono *</label>
-                        <input type="tel" id="modalTeamContact" required>
+                        <label for="modalCoachName">Director Técnico *</label>
+                        <input type="text" id="modalCoachName" required>
                     </div>
-                    <div style="text-align: center; margin-top: 20px;">
-                        <button type="submit" class="btn">Agregar Equipo</button>
-                        <button type="button" class="btn btn-secondary" onclick="closeModal('addTeamModal')">Cancelar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div id="addPlayerModal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3>➕ Agregar Jugador Destacado</h3>
-                    <button class="close-modal" onclick="closeModal('addPlayerModal')">×</button>
                 </div>
-                <form id="addPlayerForm">
-                    <div class="form-group">
-                        <label for="modalPlayerName">Nombre del Jugador *</label>
-                        <input type="text" id="modalPlayerName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="modalPlayerTeam">Equipo *</label>
-                        <select id="modalPlayerTeam" required>
-                            <option value="">Seleccionar equipo...</option>
-                        </select>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="modalPlayerPoints">Puntos por juego</label>
-                            <input type="number" id="modalPlayerPoints" step="0.1" min="0">
-                        </div>
-                        <div class="form-group">
-                            <label for="modalPlayerRebounds">Rebotes por juego</label>
-                            <input type="number" id="modalPlayerRebounds" step="0.1" min="0">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="modalPlayerAssists">Asistencias por juego</label>
-                        <input type="number" id="modalPlayerAssists" step="0.1" min="0">
-                    </div>
-                    <div style="text-align: center; margin-top: 20px;">
-                        <button type="submit" class="btn">Agregar Jugador</button>
-                        <button type="button" class="btn btn-secondary" onclick="closeModal('addPlayerModal')">Cancelar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div id="addGameModal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3>➕ Programar Partido</h3>
-                    <button class="close-modal" onclick="closeModal('addGameModal')">×</button>
+                <div class="form-group">
+                    <label for="modalTeamContact">Teléfono *</label>
+                    <input type="tel" id="modalTeamContact" required>
                 </div>
-                <form id="addGameForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="modalTeam1">Equipo Local</label>
-                            <select id="modalTeam1" required>
-                                <option value="">Seleccionar...</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="modalTeam2">Equipo Visitante</label>
-                            <select id="modalTeam2" required>
-                                <option value="">Seleccionar...</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="modalGameDate">Fecha</label>
-                            <input type="date" id="modalGameDate" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="modalGameTime">Hora</label>
-                            <input type="time" id="modalGameTime" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="modalGameVenue">Sede</label>
-                        <input type="text" id="modalGameVenue" placeholder="Gimnasio Municipal">
-                    </div>
-                    <div style="text-align: center; margin-top: 20px;">
-                        <button type="submit" class="btn">Programar Partido</button>
-                        <button type="button" class="btn btn-secondary" onclick="closeModal('addGameModal')">Cancelar</button>
-                    </div>
-                </form>
-            </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button type="submit" class="btn">Agregar Equipo</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('addTeamModal')">Cancelar</button>
+                </div>
+            </form>
         </div>
     </div>
-    <script src="email.js"></script>
 
+    <div id="addPlayerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>➕ Agregar Jugador Destacado</h3>
+                <button class="close-modal" onclick="closeModal('addPlayerModal')">×</button>
+            </div>
+            <form id="addPlayerForm">
+                <div class="form-group">
+                    <label for="modalPlayerName">Nombre del Jugador *</label>
+                    <input type="text" id="modalPlayerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="modalPlayerTeam">Equipo *</label>
+                    <select id="modalPlayerTeam" required>
+                            <option value="">Seleccionar equipo...</option>
+                        </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="modalPlayerPoints">Puntos por juego</label>
+                        <input type="number" id="modalPlayerPoints" step="0.1" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="modalPlayerRebounds">Rebotes por juego</label>
+                        <input type="number" id="modalPlayerRebounds" step="0.1" min="0">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="modalPlayerAssists">Asistencias por juego</label>
+                    <input type="number" id="modalPlayerAssists" step="0.1" min="0">
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button type="submit" class="btn">Agregar Jugador</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('addPlayerModal')">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="addGameModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>➕ Programar Partido</h3>
+                <button class="close-modal" onclick="closeModal('addGameModal')">×</button>
+            </div>
+            <form id="addGameForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="modalTeam1">Equipo Local</label>
+                        <select id="modalTeam1" required>
+                                <option value="">Seleccionar...</option>
+                            </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalTeam2">Equipo Visitante</label>
+                        <select id="modalTeam2" required>
+                                <option value="">Seleccionar...</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="modalGameDate">Fecha</label>
+                        <input type="date" id="modalGameDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalGameTime">Hora</label>
+                        <input type="time" id="modalGameTime" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="modalGameVenue">Sede</label>
+                    <input type="text" id="modalGameVenue" placeholder="Gimnasio Municipal">
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button type="submit" class="btn">Programar Partido</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('addGameModal')">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
     <script src="scrip.js"></script>
 </body>
 
