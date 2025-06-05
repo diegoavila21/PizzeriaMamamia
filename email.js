@@ -1,21 +1,20 @@
 let comments = [];
 
-// Function to handle comment form submission
 function handleCommentSubmission(event) {
     event.preventDefault();
 
-    // Get form values
+
     const name = document.getElementById('commentName').value.trim();
     const email = document.getElementById('commentEmail').value.trim();
     const text = document.getElementById('commentText').value.trim();
 
-    // Validate required fields
+
     if (!name || !text) {
         alert('Por favor, completa los campos obligatorios (Nombre y Comentario).');
         return;
     }
 
-    // Create comment object
+
     const comment = {
         name: name,
         email: email,
@@ -29,23 +28,20 @@ function handleCommentSubmission(event) {
         })
     };
 
-    // Add comment to array
     comments.push(comment);
 
-    // Display comments
     displayComments();
 
-    // Clear form
+
     clearCommentForm();
 
-    // Show success message (optional)
     showSuccessMessage();
 }
 
-// Function to display comments in the comments-grid
+
 function displayComments() {
     const commentsList = document.getElementById('commentsList');
-    commentsList.innerHTML = ''; // Clear existing comments
+    commentsList.innerHTML = ''; 
 
     comments.forEach(comment => {
         const commentCard = document.createElement('div');
@@ -74,12 +70,11 @@ function displayComments() {
     });
 }
 
-// Function to clear the comment form
+
 function clearCommentForm() {
     document.getElementById('commentForm').reset();
 }
 
-// Function to show a success message (optional, styled like success-message)
 function showSuccessMessage() {
     const successMessage = document.createElement('div');
     successMessage.className = 'success-message';
@@ -89,19 +84,17 @@ function showSuccessMessage() {
     const formContainer = document.getElementById('commentForm').parentElement;
     formContainer.insertBefore(successMessage, document.getElementById('commentForm'));
 
-    // Remove success message after 3 seconds
     setTimeout(() => {
         successMessage.remove();
-    }, 3000);
+    }, 5000);
 }
 
-// Initialize event listener for comment form
+
 document.addEventListener('DOMContentLoaded', () => {
     const commentForm = document.getElementById('commentForm');
     if (commentForm) {
         commentForm.addEventListener('submit', handleCommentSubmission);
     }
 
-    // Display any existing comments (if any)
     displayComments();
 });
