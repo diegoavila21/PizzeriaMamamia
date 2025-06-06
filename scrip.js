@@ -200,6 +200,40 @@ function loadAdminTeams() {
     });
     updateStats();
 }
+function generatePDF() {
+    const { jsPDF } = window.jspdf; 
+    const doc = new jsPDF({
+        orientation: 'portrait',
+        unit: 'px',
+        format: 'a4'
+    });
+
+    // Select the card containing the table and legend
+    const element = document.querySelector('#posiciones .card');
+
+    html2canvas(element, {
+        scale: 2, 
+        useCORS: true 
+    }).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const imgProps = doc.getImageProperties(imgData);
+        const pdfWidth = doc.internal.pageSize.getWidth();
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+    
+        doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+
+    
+        doc.setFontSize(16);
+        doc.setFont('helvetica', 'bold');
+        doc.text('Tabla de Posiciones - Liga de Baloncesto Tizayuca', 20, 20);
+
+        doc.save('Tabla_Posiciones_Tizayuca_2025.pdf');
+    }).catch(error => {
+        console.error('Error generating PDF:', error);
+        alert('Ocurrió un error al generar el PDF. Por favor, intenta de nuevo.');
+    });
+}
 
 function loadAdminStandings() {
     const tbody = document.getElementById('adminStandingsBody');
