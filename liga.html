@@ -282,27 +282,42 @@
 </div>
 <div id="comentarios" class="section">
     <div class="card">
-        <main>
-            <section id="formulario-coment" class="info-section">
-                <h2>Envía tus comentarios</h2>
-                <form action="https://formsubmit.co/kevinmaldonadoavelino@gmail.com" method="POST">
-                    <label for="name">Nombre:</label>
-                    <input type="text" id="name" name="name" required/>
+         <main class="container">
+        <section class="section contacto" aria-labelledby="contacto-title">
+            <h1 id="contacto-title">Contáctanos</h1>
+            <p><strong>Dirección:</strong> Av. Principal 123, Ciudad Auto, CP 12345</p>
+            <p><strong>Teléfono:</strong> <a href="tel:+1234567890">(123) 456-7890</a></p>
+            <p><strong>Email:</strong> <a href="mailto:Vargasfrancisconeri@gmail.com">Vargasfrancisconeri@gmail.com</a></p>
+            <p><strong>Horario:</strong> Lunes a Viernes 9:00 - 18:00, Sábado 10:00 - 14:00</p>
+        </section>
 
-                    <label for="email">Correo Electrónico:</label>
-                    <input type="email" id="email" name="email" required/>
+        <section class="hero" aria-labelledby="hero-title">
+            <h1 id="hero-title" class="hidden">Mensaje de Bienvenida</h1>
+            <p class="hero-text">Me gustaría saber qué te parece esta página.</p>
+            <p class="hero-text">Si hay algo que crees que se puede mejorar, ¡tus ideas y sugerencias serán más que bien recibidas!</p>
+            <p class="hero-text">Gracias por tomarte un rato para ayudarme con esto.</p>
+        </section>
 
-                    <label for="message">Mensaje:</label>
-                    <textarea id="message" name="message" rows="4" required></textarea>
+        <section id="formulario-coment" class="info-section" aria-labelledby="formulario-title">
+            <h1 id="formulario-title">Envía tus comentarios</h1>
+            <form action="https://formsubmit.co/Vargasfrancisconeri@gmail.com" method="POST" id="contact-form">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" required placeholder="Tu nombre"/>
 
-                    <input type="hidden" name="_subject" value="Nuevo comentario" />
-                    <input type="hidden" name="_next" value="https://diegoavila21.github.io/PizzeriaMamamia/liga.html" />
-                    <input type="hidden" name="_captcha" value="false" />
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" required placeholder="Tu correo electrónico"/>
 
-                    <button type="submit">Enviar comentario</button>
-                </form>
-            </section>
-        </main>
+                <label for="message">Mensaje:</label>
+                <textarea id="message" name="message" rows="4" required placeholder="Escribe tus comentarios aquí"></textarea>
+
+                <input type="hidden" name="_subject" value="Nuevo comentario" />
+                <input type="hidden" name="_next" value="https://diegoavila21.github.io/PizzeriaMamamia/liga.html" />
+                <input type="hidden" name="_captcha" value="false" />
+
+                <button type="submit" class="submit-btn">Enviar comentario</button>
+            </form>
+        </section>
+    </main>
     </div>
 </div>
 
