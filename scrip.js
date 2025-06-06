@@ -222,9 +222,6 @@ function generatePDF() {
         const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
         doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-        doc.setFontSize(16);
-        doc.setFont('helvetica', 'bold');
-        doc.text('');
         doc.save('Tabla_Posiciones_Tizayuca_2025.pdf');
     }).catch(error => {
         console.error('Error generating PDF:', error);
