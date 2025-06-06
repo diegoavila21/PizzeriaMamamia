@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liga de Baloncesto Tizayuca</title>
     <link rel="stylesheet" href="stiles.css">
+    <!-- Include jsPDF and html2canvas libraries for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 
 <body>
@@ -34,7 +37,8 @@
         <div id="posiciones" class="section active">
             <div class="card">
                 <h2><span class="basketball-icon">🏀</span> Tabla de Posiciones</h2>
-                <table class="table">
+                <button class="btn" onclick="generatePDF()">📥 Descargar PDF</button>
+                <table class="table" id="standingsTable">
                     <thead>
                         <tr>
                             <th>Pos</th>
@@ -50,7 +54,7 @@
                     </thead>
                     <tbody id="standingsBody"></tbody>
                 </table>
-                <p style="margin-top: 15px; font-size: 0.9rem; color: #666;">
+                <p style="margin-top: 15px; font-size: 0.9rem; color: #666;" id="standingsLegend">
                     <strong>Leyenda:</strong> PJ=Partidos Jugados, PG=Partidos Ganados, PP=Partidos Perdidos, PF=Puntos a Favor, PC=Puntos en Contra, Dif=Diferencia, Pts=Puntos de Liga
                 </p>
             </div>
@@ -101,7 +105,7 @@
                                     <option value="🐆">🐆 Jaguar</option>
                                     <option value="⚡">⚡ Rayo</option>
                                     <option value="🔥">🔥 Fuego</option>
-                                    <option value="💪">💪 Fuerza</option>
+                                    <option value="💪">💪 Fuerza</optionITHER
                                     <option value="🏆">🏆 Campeón</option>
                                     <option value="⭐">⭐ Estrella</option>
                                     <option value="👑">👑 Rey</option>
