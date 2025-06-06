@@ -187,7 +187,7 @@ function loadAdminTeams() {
         const teamCard = document.createElement('div');
         teamCard.className = 'team-card';
         teamCard.innerHTML = `
- summoning-rod  <div class="team-logo">${team.logo}</div>
+            <div class="team-logo">${team.logo}</div>
             <div class="team-name">${team.name}</div>
             <div class="team-contact">📞 ${team.contact}</div>
             <div class="team-contact">👨‍🏫 DT: ${team.coach}</div>
@@ -200,6 +200,7 @@ function loadAdminTeams() {
     });
     updateStats();
 }
+
 function generatePDF() {
     const { jsPDF } = window.jspdf; 
     const doc = new jsPDF({
@@ -220,14 +221,10 @@ function generatePDF() {
         const pdfWidth = doc.internal.pageSize.getWidth();
         const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-    
         doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-
-    
         doc.setFontSize(16);
         doc.setFont('helvetica', 'bold');
         doc.text('Tabla de Posiciones - Liga de Baloncesto Tizayuca', 20, 20);
-
         doc.save('Tabla_Posiciones_Tizayuca_2025.pdf');
     }).catch(error => {
         console.error('Error generating PDF:', error);
@@ -314,7 +311,6 @@ function loadUpcomingGames() {
     });
     updateStats();
 }
-
 
 function openModal(modalId) {
     document.getElementById(modalId).style.display = 'flex';
@@ -577,11 +573,11 @@ function updateMainStandings() {
 function exportTeamsData() {
     const dataStr = JSON.stringify(allTeams, null, 2);
     const blob = new Blob([dataStr], { type: 'application/json' });
-    const url = document.createElement('url');
+    const url = document.createElement('a');
     url.href = URL.createObjectURL(blob);
     url.download = 'teams_data.json';
     url.click();
-    URL.revokeObjectURL(url);
+    URL.revokeObjectURL(url.href);
     showAlert('Datos exportados correctamente', 'success');
 }
 
@@ -619,22 +615,21 @@ function generateSchedule() {
 
     saveAllData();
     loadUpcomingGames();
-    loadCalendario(); // Corregí el nombre de la función (antes decía loadCalendar)
+    loadCalendario();
     showAlert('Calendario generado', 'success');
     updateStats();
-
 }
 
 function resetAllTeams() {
     if (confirm('¿Reiniciar toda la liga? Esto eliminará todos los datos.')) {
         allTeams = [
             { name: 'Águilas', logo: '🦅', coach: 'Juan Pérez', contact: '+527711234567' },
-            { name: 'Leones', logo: '🦁', coach: 'María López', contact: '+52772345678' },
+            { name: 'Leones', logo: '🦁', coach: 'María López', contact: '+52772345678' }
         ];
         registeredTeams = [];
         adminPlayers = [
             { name: 'Carlos Gómez', team: 'Águilas', points: 15.5, rebounds: 7.2, assists: 4.1, avatar: '💪' },
-            { name: 'Ana Martínez', team: 'Leones', points: 12.8, rebounds: 5.6, assists: 3.9, avatar: '⭐' },
+            { name: 'Ana Martínez', team: 'Leones', points: 12.8, rebounds: 5.6, assists: 3.9, avatar: '⭐' }
         ];
         upcomingGames = [
             { team1: 'Águilas', team2: 'Leones', date: '2025-06-01', time: '14:00', venue: 'Gimnasio Municipal' }
@@ -671,8 +666,8 @@ function handleTeamRegistration(event) {
         contact: formData.get('teamContact'),
         email: formData.get('teamEmail') || 'No especificado',
         founded: formData.get('foundedYear') || 'No especificado',
-        description: teamData.get('teamDescription') || 'Sin descripción',
-        colors: teamData.get('teamColors') || 'No especificado',
+        description: formData.get('teamDescription') || 'Sin descripción',
+        colors: formData.get('teamColors') || 'No especificado',
         registrationDate: new Date().toLocaleDateString('es-MX')
     };
 
@@ -703,7 +698,6 @@ function handleTeamRegistration(event) {
         showAlert('Equipo registrado', 'success');
     }
 
-
     saveAllData();
     loadRegisteredTeams();
     loadTeams();
@@ -726,7 +720,7 @@ function loadRegisteredTeams() {
     grid.innerHTML = '';
 
     if (registeredTeams.length === 0) {
-        registeredTeams.innerHTML = '<p style="text-align: center; color: #666; grid-column: 1/-1;">No hay equipos registrados. Registra el primero!</p>';
+        grid.innerHTML = '<p style="text-align: center; color: #666; grid-column: 1/-1;">No hay equipos registrados. Registra el primero!</p>';
         return;
     }
 
